@@ -32,7 +32,9 @@ async function main() {
   const usdt = await ethers.getContractAt(erc20Abi, usdtAddress);
 
   const supportedTokens = await faucet.getSupportedTokens();
-  const supportedSet = new Set(supportedTokens.map((token) => token.toLowerCase()));
+  const supportedSet = new Set(
+    supportedTokens.map((token: string) => token.toLowerCase())
+  );
 
   if (!supportedSet.has(usdcAddress.toLowerCase())) {
     throw new Error(`USDC address ${usdcAddress} is not supported by faucet ${faucetAddress}`);
