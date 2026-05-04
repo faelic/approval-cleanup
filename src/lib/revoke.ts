@@ -1,4 +1,4 @@
-import type { Address, PublicClient, WalletClient } from "viem";
+import type { Address, WalletClient } from "viem";
 
 const erc20Abi = [
   {
@@ -33,8 +33,17 @@ type SetAllowanceParams = RevokeAllowanceParams & {
   amount: bigint;
 };
 
+type AllowanceReader = {
+  readContract(args: {
+    address: Address;
+    abi: typeof erc20Abi;
+    functionName: "allowance";
+    args: readonly [Address, Address];
+  }): Promise<bigint>;
+};
+
 type ReadAllowanceParams = {
-  publicClient: PublicClient;
+  publicClient: AllowanceReader;
   tokenAddress: Address;
   ownerAddress: Address;
   spenderAddress: Address;
