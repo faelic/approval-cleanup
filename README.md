@@ -2,6 +2,8 @@
 
 This is a Sepolia-first MVP for discovering, reviewing and managing ERC-20 token approvals.
 
+Live app: [approval-cleanup-brt3.vercel.app](https://approval-cleanup-brt3.vercel.app/)
+
 Since i began working on blockchain i've discovered that wallet approvals are easy to forget and hard to inspect. That problem inspired me to work on this project where users can both revoke and set new approvals.
 
 It helps a user:
