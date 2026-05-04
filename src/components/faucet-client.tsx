@@ -56,7 +56,7 @@ export default function FaucetClient() {
         const tokenViews = await Promise.all(
           supportedTokenAddresses.map(async (tokenAddress) => {
             const [config, symbol, decimals] = await Promise.all([
-              publicClient.readContract({
+              client.readContract({
                 address: FAUCET_ADDRESS,
                 abi: faucetAbi,
                 functionName: "tokenConfigs",
