@@ -57,6 +57,8 @@ export default function ManualApproveClient() {
 
   useEffect(() => {
     if (!publicClient || !isAddress(tokenAddress)) return;
+    const client = publicClient;
+    const token = tokenAddress as Address;
 
     let active = true;
 
@@ -66,18 +68,18 @@ export default function ManualApproveClient() {
         setTokenMetadataError(null);
 
         const [detectedDecimals, detectedSymbol] = await Promise.all([
-          publicClient.readContract({
-            address: tokenAddress as Address,
+          client.readContract({
+            address: token,
             abi: tokenMetadataAbi,
             functionName: "decimals",
           }),
-          publicClient.readContract({
-            address: tokenAddress as Address,
+          client.readContract({
+            address: token,
             abi: tokenMetadataAbi,
             functionName: "symbol",
           }).catch(async () => {
-            const raw = await publicClient.readContract({
-              address: tokenAddress as Address,
+            const raw = await client.readContract({
+              address: token,
               abi: [
                 {
                   type: "function",
