@@ -221,6 +221,7 @@ export default function DashboardClient() {
     if (!revokeOpen || !selectedApproval || !address || !publicClient) return;
     const client = publicClient;
     const ownerAddress = address as Address;
+    const approval = selectedApproval;
 
     let active = true;
 
@@ -231,13 +232,13 @@ export default function DashboardClient() {
 
         const allowance = await readAllowance({
           publicClient: client,
-          tokenAddress: selectedApproval.tokenAddress as Address,
+          tokenAddress: approval.tokenAddress as Address,
           ownerAddress,
-          spenderAddress: selectedApproval.spenderAddress as Address,
+          spenderAddress: approval.spenderAddress as Address,
         });
 
         if (!active) return;
-        setLiveAllowanceLabel(formatTokenAmount(allowance, selectedApproval.tokenDecimals));
+        setLiveAllowanceLabel(formatTokenAmount(allowance, approval.tokenDecimals));
       } catch (err) {
         if (!active) return;
         setLiveAllowanceLabel(null);
