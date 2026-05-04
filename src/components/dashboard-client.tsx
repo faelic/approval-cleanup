@@ -219,6 +219,8 @@ export default function DashboardClient() {
 
   useEffect(() => {
     if (!revokeOpen || !selectedApproval || !address || !publicClient) return;
+    const client = publicClient;
+    const ownerAddress = address as Address;
 
     let active = true;
 
@@ -228,9 +230,9 @@ export default function DashboardClient() {
         setLiveAllowanceError(null);
 
         const allowance = await readAllowance({
-          publicClient,
+          publicClient: client,
           tokenAddress: selectedApproval.tokenAddress as Address,
-          ownerAddress: address as Address,
+          ownerAddress,
           spenderAddress: selectedApproval.spenderAddress as Address,
         });
 
