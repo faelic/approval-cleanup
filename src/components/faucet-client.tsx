@@ -63,7 +63,6 @@ export default function FaucetClient() {
                 args: [tokenAddress],
               }) as Promise<FaucetTokenConfig>,
               client.readContract({
-                address: FAUCET_ADDRESS,
                 abi: erc20MetadataAbi,
                 functionName: "symbol",
                 address: tokenAddress,
